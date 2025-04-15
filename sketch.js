@@ -1,4 +1,4 @@
-var capture;
+let capture;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -6,12 +6,21 @@ function setup() {
   capture.size(200, 200);
   capture.hide();
   imageMode(CENTER);
+  background(255);
+
+  // Instruction text
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  text("(click anywhere)", width / 2, height / 2);
 }
 
 function draw() {
-  // background(255);
+  // Nothing here as stamping only happens on click
+}
 
-  // change the mouseX, mouseY below to an x, y value to make webcam stay still
-  image(capture, mouseX, mouseY, 100, height);
-  filter(BLUR, 3); // Apply posterize filter with 3 levels
+function mousePressed() {
+  // Stamp webcam image at mouse location
+  image(capture, mouseX, mouseY, 100, 100);
+  filter(ERODE);
 }
